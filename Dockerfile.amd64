@@ -1,0 +1,13 @@
+FROM amd64/alpine:latest
+
+LABEL name='CertBot'
+LABEL version='0.2'
+LABEL description="Certbot on Alpine"
+LABEL org.ctrlaltdev.vendor='ctrlaltdev'
+
+
+RUN set -x && apk --no-cache add certbot
+
+VOLUME /etc/letsencrypt /var/lib/letsencrypt
+
+ENTRYPOINT [ "certbot" ]

@@ -1,0 +1,14 @@
+FROM arm32v6/alpine:latest
+
+LABEL name='CertBot'
+LABEL version='0.2'
+LABEL description="Certbot on Alpine"
+LABEL org.ctrlaltdev.vendor='ctrlaltdev'
+
+COPY qemu-arm-static /usr/bin/
+
+RUN set -x && apk --no-cache add certbot
+
+VOLUME /etc/letsencrypt /var/lib/letsencrypt
+
+ENTRYPOINT [ "certbot" ]

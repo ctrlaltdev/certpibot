@@ -1,0 +1,14 @@
+FROM arm64v8/alpine:latest
+
+LABEL name='CertBot'
+LABEL version='0.2'
+LABEL description="Certbot on Alpine"
+LABEL org.ctrlaltdev.vendor='ctrlaltdev'
+
+COPY qemu-aarch64-static /usr/bin/
+
+RUN set -x && apk --no-cache add certbot
+
+VOLUME /etc/letsencrypt /var/lib/letsencrypt
+
+ENTRYPOINT [ "certbot" ]
